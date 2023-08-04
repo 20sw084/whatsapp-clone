@@ -10,8 +10,9 @@ class ChatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         bottomNavigationBar: Container(
-          height: 50,
+          height: 55,
           width: MediaQuery.of(context).size.width,
           child: Padding(
             padding: const EdgeInsets.all(5.0),
@@ -19,6 +20,7 @@ class ChatScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: TextField(
+                    keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       hintText: "Message",
                       prefixIcon: IconButton(
