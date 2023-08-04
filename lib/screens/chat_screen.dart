@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class ChatScreen extends StatelessWidget {
   final String title;
@@ -18,13 +19,12 @@ class ChatScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: TextField(
-
                     decoration: InputDecoration(
                       hintText: "Message",
                       prefixIcon: IconButton(
                         color: Colors.grey,
                         icon: Icon(Icons.emoji_emotions_outlined),
-                        onPressed: () {  },
+                        onPressed: () {},
                       ),
                       suffixIcon: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -32,12 +32,12 @@ class ChatScreen extends StatelessWidget {
                           IconButton(
                             color: Colors.grey,
                             icon: Icon(Icons.attachment),
-                            onPressed: () {  },
+                            onPressed: () {},
                           ),
                           IconButton(
                             color: Colors.grey,
                             icon: Icon(Icons.camera_alt),
-                            onPressed: () {  },
+                            onPressed: () {},
                           ),
                         ],
                       ),
@@ -47,25 +47,36 @@ class ChatScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                FloatingActionButton(onPressed: null, child: Icon(Icons.mic_rounded)),
+                FloatingActionButton(
+                    onPressed: null, child: Icon(Icons.mic_rounded)),
               ],
             ),
           ),
         ),
         appBar: AppBar(
           title: Text(title),
+          leadingWidth: 70,
           leading: Stack(
             children: [
-              IconButton(
-                iconSize: 25,
-                onPressed: () => Navigator.of(context).pop(),
-                icon: Icon(
-                  Icons.arrow_back,
+              Positioned(
+                left: -5,
+                child: IconButton(
+                  iconSize: 24,
+                  onPressed: () => Navigator.of(context).pop(),
+                  icon: Icon(
+                    Icons.arrow_back,
+                  ),
                 ),
               ),
-              CircleAvatar(
-                radius: 20,
-                child: Image.network(imgURL),
+              Positioned(
+                left: 30,
+                top: 5,
+                child: CircleAvatar(
+                  radius: 20,
+                  backgroundImage: NetworkImage(
+                    imgURL,
+                  ),
+                ),
               ),
             ],
           ),
