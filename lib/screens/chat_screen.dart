@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class ChatScreen extends StatelessWidget {
   final String title;
@@ -11,47 +10,50 @@ class ChatScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        bottomNavigationBar: Container(
-          height: 55,
-          width: MediaQuery.of(context).size.width,
-          child: Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      hintText: "Message",
-                      prefixIcon: IconButton(
-                        color: Colors.grey,
-                        icon: Icon(Icons.emoji_emotions_outlined),
-                        onPressed: () {},
-                      ),
-                      suffixIcon: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          IconButton(
-                            color: Colors.grey,
-                            icon: Icon(Icons.attachment),
-                            onPressed: () {},
-                          ),
-                          IconButton(
-                            color: Colors.grey,
-                            icon: Icon(Icons.camera_alt),
-                            onPressed: () {},
-                          ),
-                        ],
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25),
+        bottomNavigationBar: Padding(
+          padding: MediaQuery.of(context).viewInsets,
+          child: Container(
+            height: 55,
+            width: MediaQuery.of(context).size.width,
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        hintText: "Message",
+                        prefixIcon: IconButton(
+                          color: Colors.grey,
+                          icon: Icon(Icons.emoji_emotions_outlined),
+                          onPressed: () {},
+                        ),
+                        suffixIcon: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            IconButton(
+                              color: Colors.grey,
+                              icon: Icon(Icons.attachment),
+                              onPressed: () {},
+                            ),
+                            IconButton(
+                              color: Colors.grey,
+                              icon: Icon(Icons.camera_alt),
+                              onPressed: () {},
+                            ),
+                          ],
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                FloatingActionButton(
-                    onPressed: null, child: Icon(Icons.mic_rounded)),
-              ],
+                  FloatingActionButton(
+                      onPressed: null, child: Icon(Icons.mic_rounded)),
+                ],
+              ),
             ),
           ),
         ),
