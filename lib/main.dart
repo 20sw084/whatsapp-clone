@@ -8,6 +8,8 @@ void main() {
   runApp(const MyApp());
 }
 
+enum PopUpMenuEnum {group, broadcast, devicesLinked, messagesStarred, settings}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -15,6 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // int _tabs = 4;
     final List _tabs = [Icons.group, 'Chats', 'Status', 'Calls'];
+    PopUpMenuEnum _selectedPopUpMenuIndex = PopUpMenuEnum.group;
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.green,
@@ -89,13 +92,41 @@ class MyApp extends StatelessWidget {
                                   ),
                                 ),
                           IconButton(
-                            onPressed: null,
+                            onPressed: () {
+                              PopupMenuButton<PopUpMenuEnum>(
+                                initialValue: _selectedPopUpMenuIndex,
+                                onSelected: (PopUpMenuEnum e){_selectedPopUpMenuIndex = e;},
+                                itemBuilder: (context) => [
+                                  PopupMenuItem(
+                                    value: PopUpMenuEnum.group,
+                                    child: Text("New Group"),
+                                  ),
+                                  PopupMenuItem(
+                                    value: PopUpMenuEnum.broadcast,
+                                    child: Text("New Broadcast"),
+                                  ),
+                                  PopupMenuItem(
+                                    value: PopUpMenuEnum.devicesLinked,
+                                    child: Text("Linked devices"),
+                                  ),
+                                  PopupMenuItem(
+                                    value: PopUpMenuEnum.messagesStarred,
+                                    child: Text("Starred messages"),
+                                  ),
+                                  PopupMenuItem(
+                                    value: PopUpMenuEnum.settings,
+                                    child: Text("Settings"),
+                                  ),
+                                ],
+                              );
+                            },
                             icon: Icon(Icons.more_vert),
                           ),
                         ],
                         floating: true,
                         pinned: true,
-                        snap: true, // <--- this is required if I want the application bar to show when I scroll up
+                        snap:
+                            true, // <--- this is required if I want the application bar to show when I scroll up
                         bottom: TabBar(
                           isScrollable: true,
                           tabs: [
@@ -204,6 +235,3 @@ class MyApp extends StatelessWidget {
 TextStyle TabBarStyle = TextStyle(
   fontSize: 17,
 );
-
-// Mediaurey.of will provide screen related features
-//
