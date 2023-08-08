@@ -17,13 +17,13 @@ class ChatScreen extends StatelessWidget {
       Message(text: "Nice.", date: DateTime.now(), isSentByMe: true),
       Message(text: "Better.", date: DateTime.now(), isSentByMe: false),
       Message(text: "Fine.", date: DateTime.now(), isSentByMe: true),
-      Message(text: "awesome.", date: DateTime.now(), isSentByMe: false),
+      Message(text: "awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. ", date: DateTime.now(), isSentByMe: false),
       Message(text: "Perfect.", date: DateTime.now(), isSentByMe: true),
       Message(text: "Good.", date: DateTime.now(), isSentByMe: false),
       Message(text: "Nice.", date: DateTime.now(), isSentByMe: true),
       Message(text: "Better.", date: DateTime.now(), isSentByMe: false),
       Message(text: "Fine.", date: DateTime.now(), isSentByMe: true),
-      Message(text: "awesome.", date: DateTime.now(), isSentByMe: false),
+      Message(text: "awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. ", date: DateTime.now(), isSentByMe: true),
       Message(text: "Perfect.", date: DateTime.now(), isSentByMe: true),
       Message(text: "Good.", date: DateTime.now(), isSentByMe: false),
       Message(text: "Bye, My Friend.", date: DateTime.now(), isSentByMe: true),
@@ -120,49 +120,55 @@ class ChatScreen extends StatelessWidget {
             ),
           ],
         ),
-        body: ListView.builder(
-            itemCount: messages.length,
-            shrinkWrap: true,
-            padding: EdgeInsets.only(top: 10, bottom: 10),
-            physics: NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              List<String> _sd = messages[index].date.toString().split(' ');
-              String _t = _sd.last;
-              return Container(
-                padding:
-                    EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 10),
-                child: Align(
-                  alignment: (messages[index].isSentByMe
-                      ? Alignment.topLeft
-                      : Alignment.topRight),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: (messages[index].isSentByMe
-                          ? Colors.grey.shade200
-                          : Colors.green[200]),
-                    ),
-                    padding: EdgeInsets.all(10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text(
-                          messages[index].text,
-                          style: TextStyle(fontSize: 15),
-                        ),
-                        Text(
-                          _t,
-                          style: TextStyle(fontSize: 10),
-                        ),
-                      ],
+        body: SingleChildScrollView(
+          child: ListView.builder(
+              itemCount: messages.length,
+              shrinkWrap: true,
+              padding: EdgeInsets.only(top: 10, bottom: 10),
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                List<String> _sd = messages[index].date.toString().split(' ');
+                String _t = _sd.last;
+                return Container(
+                  padding:
+                      EdgeInsets.only(left: (messages[index].isSentByMe)?14:50, right: (messages[index].isSentByMe)?50:14, top: 10, bottom: 10),
+                  child: Align(
+                    alignment: (messages[index].isSentByMe
+                        ? Alignment.topLeft
+                        : Alignment.topRight),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: (messages[index].isSentByMe
+                            ? Colors.grey.shade200
+                            : Colors.green[200]),
+                      ),
+                      padding: EdgeInsets.all(10),
+                      child: Stack(
+                        textDirection: TextDirection.rtl,
+                        children: [
+                          Text(
+                            maxLines: 25,
+                            messages[index].text,
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          Positioned(
+                            bottom: 0,
+                            child: Text(
+                              _t,
+                              style: TextStyle(fontSize: 10),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                // child: ListTile(
-                //   title: Text(messages.elementAt(index).text),
-                // ),
-              );
-            }),
+                  // child: ListTile(
+                  //   title: Text(messages.elementAt(index).text),
+                  // ),
+                );
+              }),
+        ),
       ),
     );
   }
