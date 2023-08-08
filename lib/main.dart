@@ -8,13 +8,20 @@ void main() {
   runApp(const MyApp());
 }
 
-enum PopUpMenuEnum {group, broadcast, devicesLinked, messagesStarred, settings}
+enum PopUpMenuEnum {
+  group,
+  broadcast,
+  devicesLinked,
+  messagesStarred,
+  settings
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+
     // int _tabs = 4;
     final List _tabs = [Icons.group, 'Chats', 'Status', 'Calls'];
     PopUpMenuEnum _selectedPopUpMenuIndex = PopUpMenuEnum.group;
@@ -95,7 +102,9 @@ class MyApp extends StatelessWidget {
                             onPressed: () {
                               PopupMenuButton<PopUpMenuEnum>(
                                 initialValue: _selectedPopUpMenuIndex,
-                                onSelected: (PopUpMenuEnum e){_selectedPopUpMenuIndex = e;},
+                                onSelected: (PopUpMenuEnum e) {
+                                  _selectedPopUpMenuIndex = e;
+                                },
                                 itemBuilder: (context) => [
                                   PopupMenuItem(
                                     value: PopUpMenuEnum.group,

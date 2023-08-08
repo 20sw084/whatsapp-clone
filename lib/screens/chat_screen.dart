@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../models/message.dart';
+
 class ChatScreen extends StatelessWidget {
   final String title;
   final String imgURL;
@@ -7,6 +9,25 @@ class ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Message> messages = [
+      Message(text: "Hello My Friend.", date: DateTime.now(), isSentByMe: true),
+      Message(text: "Hi My Friend.", date: DateTime.now(), isSentByMe: false),
+      Message(text: "See u soon.", date: DateTime.now(), isSentByMe: false),
+      Message(text: "How are you?.", date: DateTime.now(), isSentByMe: true),
+      Message(text: "Nice.", date: DateTime.now(), isSentByMe: true),
+      Message(text: "Better.", date: DateTime.now(), isSentByMe: false),
+      Message(text: "Fine.", date: DateTime.now(), isSentByMe: true),
+      Message(text: "awesome.", date: DateTime.now(), isSentByMe: false),
+      Message(text: "Perfect.", date: DateTime.now(), isSentByMe: true),
+      Message(text: "Good.", date: DateTime.now(), isSentByMe: false),
+      Message(text: "Nice.", date: DateTime.now(), isSentByMe: true),
+      Message(text: "Better.", date: DateTime.now(), isSentByMe: false),
+      Message(text: "Fine.", date: DateTime.now(), isSentByMe: true),
+      Message(text: "awesome.", date: DateTime.now(), isSentByMe: false),
+      Message(text: "Perfect.", date: DateTime.now(), isSentByMe: true),
+      Message(text: "Good.", date: DateTime.now(), isSentByMe: false),
+      Message(text: "Bye, My Friend.", date: DateTime.now(), isSentByMe: true),
+    ];
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -99,6 +120,49 @@ class ChatScreen extends StatelessWidget {
             ),
           ],
         ),
+        body: ListView.builder(
+            itemCount: messages.length,
+            shrinkWrap: true,
+            padding: EdgeInsets.only(top: 10, bottom: 10),
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              List<String> _sd = messages[index].date.toString().split(' ');
+              String _t = _sd.last;
+              return Container(
+                padding:
+                    EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 10),
+                child: Align(
+                  alignment: (messages[index].isSentByMe
+                      ? Alignment.topLeft
+                      : Alignment.topRight),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: (messages[index].isSentByMe
+                          ? Colors.grey.shade200
+                          : Colors.green[200]),
+                    ),
+                    padding: EdgeInsets.all(10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          messages[index].text,
+                          style: TextStyle(fontSize: 15),
+                        ),
+                        Text(
+                          _t,
+                          style: TextStyle(fontSize: 10),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                // child: ListTile(
+                //   title: Text(messages.elementAt(index).text),
+                // ),
+              );
+            }),
       ),
     );
   }
