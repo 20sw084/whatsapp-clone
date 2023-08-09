@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lab_02/screens/user_screen.dart';
 
 import '../models/message.dart';
 
@@ -134,18 +135,29 @@ class ChatScreen extends StatelessWidget {
           ),
         ),
         appBar: AppBar(
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(title),
-              Text(
-                "last seen today at 5:22 pm",
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.normal,
+          title: GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => UserScreen(
+                    name: title,
+                  ),
                 ),
-              ),
-            ],
+              );
+            },
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title),
+                Text(
+                  "last seen today at 5:22 pm",
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+              ],
+            ),
           ),
           leadingWidth: 70,
           leading: Stack(
@@ -163,10 +175,15 @@ class ChatScreen extends StatelessWidget {
               Positioned(
                 left: 30,
                 top: 5,
-                child: CircleAvatar(
-                  radius: 20,
-                  backgroundImage: NetworkImage(
-                    imgURL,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: CircleAvatar(
+                    radius: 20,
+                    backgroundImage: NetworkImage(
+                      imgURL,
+                    ),
                   ),
                 ),
               ),
@@ -174,16 +191,98 @@ class ChatScreen extends StatelessWidget {
           ),
           actions: [
             IconButton(
-              onPressed: (){},
+              onPressed: () {},
               icon: Icon(Icons.videocam),
             ),
             IconButton(
-              onPressed: (){},
+              onPressed: () {},
               icon: Icon(Icons.call),
             ),
-            IconButton(
-              onPressed: (){},
-              icon: Icon(Icons.more_vert),
+            PopupMenuButton<int>(
+              itemBuilder: (context) => [
+                // popupmenu item 1
+                PopupMenuItem(
+                  value: 1,
+                  child: Text("View contact"),
+                ),
+                // popupmenu item 2
+                PopupMenuItem(
+                  value: 2,
+                  child: Text("Media, links, and docs"),
+                ),
+                // popupmenu item 3
+                PopupMenuItem(
+                  value: 3,
+                  child: Text("Search"),
+                ),
+                // popupmenu item 4
+                PopupMenuItem(
+                  value: 4,
+                  child: Text("Mute Notifications"),
+                ),
+                // popupmenu item 5
+                PopupMenuItem(
+                  value: 5,
+                  child: Text("Disappearing messages"),
+                ),
+                // popupmenu item 6
+                PopupMenuItem(
+                  value: 6,
+                  child: Text("Wallpaper"),
+                ),
+                // popupmenu item 7
+                PopupMenuItem(
+                  value: 7,
+                  onTap: () {},
+                  padding: EdgeInsets.zero,
+                  child: PopupMenuButton(
+                      child: Container(
+                        // alignment: Alignment.center,
+                        height: 48.0, //default height
+                        width: double.infinity,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 17.0,top: 10.0,right: 10.0,),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("More"),
+                              Icon(Icons.arrow_right_sharp, color: Colors.black,),
+                            ],
+                          ),
+                        ),
+                      ),
+                    itemBuilder: (context) => [
+                      // popupmenu item 1
+                      PopupMenuItem(
+                        value: 1,
+                        child: Text("Report"),
+                      ),
+                      // popupmenu item 2
+                      PopupMenuItem(
+                        value: 2,
+                        child: Text("Block"),
+                      ),
+                      // popupmenu item 3
+                      PopupMenuItem(
+                        value: 3,
+                        child: Text("Clear Chat"),
+                      ),
+                      // popupmenu item 4
+                      PopupMenuItem(
+                        value: 4,
+                        child: Text("Export Chat"),
+                      ),
+                      // popupmenu item 5
+                      PopupMenuItem(
+                        value: 5,
+                        child: Text("Add shortcut"),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+              offset: Offset(0, 65),
+              // elevation: 2,
             ),
           ],
         ),
@@ -240,7 +339,7 @@ class ChatScreen extends StatelessWidget {
                             ),
                             //alignment: Alignment.bottomRight,
                             constraints: BoxConstraints(
-                              maxWidth: 60,
+                              maxWidth: 70,
                             ),
                             child: Row(
                               children: [
@@ -278,21 +377,3 @@ class ChatScreen extends StatelessWidget {
     );
   }
 }
-
-// child: Stack(
-// textDirection: TextDirection.rtl,
-// children: [
-// Text(
-// maxLines: 25,
-// messages[index].text,
-// style: TextStyle(fontSize: 15),
-// ),
-// Positioned(
-// bottom: 0,
-// child: Text(
-// _t,
-// style: TextStyle(fontSize: 10),
-// ),
-// ),
-// ],
-// ),

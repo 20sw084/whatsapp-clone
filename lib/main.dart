@@ -7,15 +7,6 @@ import 'package:lab_02/widgets/status_widget.dart';
 void main() {
   runApp(const MyApp());
 }
-
-enum PopUpMenuEnum {
-  group,
-  broadcast,
-  devicesLinked,
-  messagesStarred,
-  settings
-}
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -24,7 +15,6 @@ class MyApp extends StatelessWidget {
 
     // int _tabs = 4;
     final List _tabs = [Icons.group, 'Chats', 'Status', 'Calls'];
-    PopUpMenuEnum _selectedPopUpMenuIndex = PopUpMenuEnum.group;
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.green,
@@ -98,39 +88,30 @@ class MyApp extends StatelessWidget {
                                     Icons.search,
                                   ),
                                 ),
-                          IconButton(
-                            onPressed: () {
-                              PopupMenuButton<PopUpMenuEnum>(
-                                initialValue: _selectedPopUpMenuIndex,
-                                onSelected: (PopUpMenuEnum e) {
-                                  _selectedPopUpMenuIndex = e;
-                                },
+                          PopupMenuButton<int>(
                                 itemBuilder: (context) => [
                                   PopupMenuItem(
-                                    value: PopUpMenuEnum.group,
+                                    value: 1,
                                     child: Text("New Group"),
                                   ),
                                   PopupMenuItem(
-                                    value: PopUpMenuEnum.broadcast,
+                                    value: 2,
                                     child: Text("New Broadcast"),
                                   ),
                                   PopupMenuItem(
-                                    value: PopUpMenuEnum.devicesLinked,
+                                    value: 3,
                                     child: Text("Linked devices"),
                                   ),
                                   PopupMenuItem(
-                                    value: PopUpMenuEnum.messagesStarred,
+                                    value: 4,
                                     child: Text("Starred messages"),
                                   ),
                                   PopupMenuItem(
-                                    value: PopUpMenuEnum.settings,
+                                    value: 5,
                                     child: Text("Settings"),
                                   ),
                                 ],
-                              );
-                            },
-                            icon: Icon(Icons.more_vert),
-                          ),
+                              ),
                         ],
                         floating: true,
                         pinned: true,
