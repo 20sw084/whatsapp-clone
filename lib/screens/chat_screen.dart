@@ -10,23 +10,78 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Message> messages = [
-      Message(text: "Hello My Friend.", date: DateTime.now(), isSentByMe: true),
-      Message(text: "Hi My Friend.", date: DateTime.now(), isSentByMe: false),
-      Message(text: "See u soon.", date: DateTime.now(), isSentByMe: false),
-      Message(text: "How are you?.", date: DateTime.now(), isSentByMe: true),
-      Message(text: "Nice.", date: DateTime.now(), isSentByMe: true),
-      Message(text: "Better.", date: DateTime.now(), isSentByMe: false),
-      Message(text: "Fine.", date: DateTime.now(), isSentByMe: true),
-      Message(text: "awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. ", date: DateTime.now(), isSentByMe: false),
-      Message(text: "Perfect.", date: DateTime.now(), isSentByMe: true),
-      Message(text: "Good.", date: DateTime.now(), isSentByMe: false),
-      Message(text: "Nice.", date: DateTime.now(), isSentByMe: true),
-      Message(text: "Better.", date: DateTime.now(), isSentByMe: false),
-      Message(text: "Fine.", date: DateTime.now(), isSentByMe: true),
-      Message(text: "awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. ", date: DateTime.now(), isSentByMe: true),
-      Message(text: "Perfect.", date: DateTime.now(), isSentByMe: true),
-      Message(text: "Good.", date: DateTime.now(), isSentByMe: false),
-      Message(text: "Bye, My Friend.", date: DateTime.now(), isSentByMe: true),
+      Message(
+          text: "Hello My Friend.",
+          date: DateTime.now(),
+          isSentByMe: true,
+          isSeen: true),
+      Message(
+          text: "Hi My Friend.",
+          date: DateTime.now(),
+          isSentByMe: false,
+          isSeen: true),
+      Message(
+          text: "See u soon.",
+          date: DateTime.now(),
+          isSentByMe: false,
+          isSeen: true),
+      Message(
+          text: "How are you?.",
+          date: DateTime.now(),
+          isSentByMe: true,
+          isSeen: true),
+      Message(
+          text: "Nice.", date: DateTime.now(), isSentByMe: true, isSeen: true),
+      Message(
+          text: "Better.",
+          date: DateTime.now(),
+          isSentByMe: false,
+          isSeen: true),
+      Message(
+          text: "Fine.", date: DateTime.now(), isSentByMe: true, isSeen: true),
+      Message(
+          text:
+              "awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. ",
+          date: DateTime.now(),
+          isSentByMe: false,
+          isSeen: true),
+      Message(
+          text: "Perfect.",
+          date: DateTime.now(),
+          isSentByMe: true,
+          isSeen: true),
+      Message(
+          text: "Good.", date: DateTime.now(), isSentByMe: false, isSeen: true),
+      Message(
+          text: "Nice.", date: DateTime.now(), isSentByMe: true, isSeen: true),
+      Message(
+          text: "Better.",
+          date: DateTime.now(),
+          isSentByMe: false,
+          isSeen: false),
+      Message(
+          text: "Fine.", date: DateTime.now(), isSentByMe: true, isSeen: false),
+      Message(
+          text:
+              "awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. awesome. ",
+          date: DateTime.now(),
+          isSentByMe: true,
+          isSeen: false),
+      Message(
+          text: "Perfect.",
+          date: DateTime.now(),
+          isSentByMe: true,
+          isSeen: false),
+      Message(
+          text: "Good.",
+          date: DateTime.now(),
+          isSentByMe: false,
+          isSeen: false),
+      Message(
+          text: "Bye, My Friend.",
+          date: DateTime.now(),
+          isSentByMe: true,
+          isSeen: false),
     ];
     return SafeArea(
       child: Scaffold(
@@ -79,7 +134,19 @@ class ChatScreen extends StatelessWidget {
           ),
         ),
         appBar: AppBar(
-          title: Text(title),
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title),
+              Text(
+                "last seen today at 5:22 pm",
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ],
+          ),
           leadingWidth: 70,
           leading: Stack(
             children: [
@@ -107,15 +174,15 @@ class ChatScreen extends StatelessWidget {
           ),
           actions: [
             IconButton(
-              onPressed: null,
+              onPressed: (){},
               icon: Icon(Icons.videocam),
             ),
             IconButton(
-              onPressed: null,
+              onPressed: (){},
               icon: Icon(Icons.call),
             ),
             IconButton(
-              onPressed: null,
+              onPressed: (){},
               icon: Icon(Icons.more_vert),
             ),
           ],
@@ -128,10 +195,23 @@ class ChatScreen extends StatelessWidget {
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 List<String> _sd = messages[index].date.toString().split(' ');
-                String _t = _sd.last;
+                List<String> _time24 = _sd.last.split(':');
+                String _hours24 = _time24.first;
+                bool _isPm = false;
+                if (int.parse(_hours24) > 12) {
+                  int _temp = int.parse(_hours24);
+                  _temp -= 12;
+                  _hours24 = _temp.toString();
+                  _isPm = true;
+                }
+                String _mins = _time24.elementAt(1);
+                // String _t = _sd.last;
                 return Container(
-                  padding:
-                      EdgeInsets.only(left: (messages[index].isSentByMe)?14:50, right: (messages[index].isSentByMe)?50:14, top: 10, bottom: 10),
+                  padding: EdgeInsets.only(
+                      left: (messages[index].isSentByMe) ? 14 : 50,
+                      right: (messages[index].isSentByMe) ? 50 : 14,
+                      top: 10,
+                      bottom: 10),
                   child: Align(
                     alignment: (messages[index].isSentByMe
                         ? Alignment.topLeft
@@ -144,19 +224,44 @@ class ChatScreen extends StatelessWidget {
                             : Colors.green[200]),
                       ),
                       padding: EdgeInsets.all(10),
-                      child: Stack(
-                        textDirection: TextDirection.rtl,
+                      child: Wrap(
+                        verticalDirection: VerticalDirection.down,
+                        alignment: WrapAlignment.end,
                         children: [
                           Text(
                             maxLines: 25,
                             messages[index].text,
                             style: TextStyle(fontSize: 15),
                           ),
-                          Positioned(
-                            bottom: 0,
-                            child: Text(
-                              _t,
-                              style: TextStyle(fontSize: 10),
+                          Container(
+                            padding: EdgeInsets.zero,
+                            margin: EdgeInsets.only(
+                              left: 20,
+                            ),
+                            //alignment: Alignment.bottomRight,
+                            constraints: BoxConstraints(
+                              maxWidth: 60,
+                            ),
+                            child: Row(
+                              children: [
+                                Text(
+                                  "$_hours24:$_mins",
+                                  style: TextStyle(fontSize: 12),
+                                ),
+                                Text(
+                                  (_isPm ? " pm" : " am"),
+                                  style: TextStyle(fontSize: 12),
+                                ),
+                                (messages[index].isSentByMe)
+                                    ? Container()
+                                    : Icon(
+                                        Icons.done_all,
+                                        size: 12,
+                                        color: (messages[index].isSeen)
+                                            ? Colors.blue
+                                            : Colors.black,
+                                      ),
+                              ],
                             ),
                           ),
                         ],
@@ -173,3 +278,21 @@ class ChatScreen extends StatelessWidget {
     );
   }
 }
+
+// child: Stack(
+// textDirection: TextDirection.rtl,
+// children: [
+// Text(
+// maxLines: 25,
+// messages[index].text,
+// style: TextStyle(fontSize: 15),
+// ),
+// Positioned(
+// bottom: 0,
+// child: Text(
+// _t,
+// style: TextStyle(fontSize: 10),
+// ),
+// ),
+// ],
+// ),
