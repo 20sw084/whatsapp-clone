@@ -367,18 +367,21 @@ class UserScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: 10,
-                        physics: ScrollPhysics(),
-                        itemBuilder: (context, index) => ListTile(
-                          title: Text("Friends Forever"),
-                          subtitle: Text("S,D,F,G,H,J,K,L,W,E,R,T,Y,U,I,O,P"),
-                          leading: CircleAvatar(
-                            radius: 18.0,
-                            backgroundColor: Colors.transparent,
-                            child: Image.network(
-                                "https://th.bing.com/th/id/R.8e2c571ff125b3531705198a15d3103c?rik=ZS6L%2fgS20ouPXA&pid=ImgRaw&r=0"),
+                      ConstrainedBox(
+                        constraints: const BoxConstraints(minHeight: 50, maxHeight: 200),
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: 10,
+                          physics: ScrollPhysics(),
+                          itemBuilder: (context, index) => ListTile(
+                            title: Text("Friends Forever"),
+                            subtitle: Text("S,D,F,G,H,J,K,L,W,E,R,T,Y,U,I,O,P"),
+                            leading: CircleAvatar(
+                              radius: 18.0,
+                              backgroundColor: Colors.transparent,
+                              child: Image.network(
+                                  "https://th.bing.com/th/id/R.8e2c571ff125b3531705198a15d3103c?rik=ZS6L%2fgS20ouPXA&pid=ImgRaw&r=0"),
+                            ),
                           ),
                         ),
                       ),
@@ -409,6 +412,7 @@ class UserScreen extends StatelessWidget {
                     ],
                   ),
                 ),
+                Divider(),
               ],
             ),
           ),
