@@ -310,10 +310,23 @@ class UserScreen extends StatelessWidget {
               Container(
                 child: Column(
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          "10 Groups in common",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
                     ListTile(
                       title: Text("Create group with $name"),
                       leading: CircleAvatar(
-                        child: Image.network("https://th.bing.com/th/id/R.8e2c571ff125b3531705198a15d3103c?rik=ZS6L%2fgS20ouPXA&pid=ImgRaw&r=0"),
+                        child: Image.network(
+                            "https://th.bing.com/th/id/R.8e2c571ff125b3531705198a15d3103c?rik=ZS6L%2fgS20ouPXA&pid=ImgRaw&r=0"),
                       ),
                     ),
                     ListView.builder(
@@ -325,8 +338,31 @@ class UserScreen extends StatelessWidget {
                         subtitle: Text("S,D,F,G,H,J,K,L,W,E,R,T,Y,U,I,O,P"),
                         leading: CircleAvatar(
                           backgroundColor: Colors.transparent,
-                          child: Image.network("https://th.bing.com/th/id/R.8e2c571ff125b3531705198a15d3103c?rik=ZS6L%2fgS20ouPXA&pid=ImgRaw&r=0"),
+                          child: Image.network(
+                              "https://th.bing.com/th/id/R.8e2c571ff125b3531705198a15d3103c?rik=ZS6L%2fgS20ouPXA&pid=ImgRaw&r=0"),
                         ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                child: Column(
+                  children: [
+                    ListTile(
+                      title: Text("Block $name"),
+                      textColor: Colors.red,
+                      leading: Icon(
+                        Icons.do_not_disturb_alt_outlined,
+                        color: Colors.red,
+                      ),
+                    ),
+                    ListTile(
+                      title: Text("Report $name"),
+                      textColor: Colors.red,
+                      leading: Icon(
+                        Icons.do_not_disturb_alt_outlined,
+                        color: Colors.red,
                       ),
                     ),
                   ],
