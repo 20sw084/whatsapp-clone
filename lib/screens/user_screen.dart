@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../models/group.dart';
 import '../models/media.dart';
 
 // TODO: Date transformation to 13 January 2019 formate
@@ -81,6 +82,62 @@ class UserScreen extends StatelessWidget {
             "https://th.bing.com/th/id/OIP.Vt3kGu4X6WQlmH91GpJpzgHaFH?pid=ImgDet&rs=1",
         isSentByMe: false,
         type: "img",
+      ),
+    ];
+    List<Group> groups = [
+      Group(
+        name: "Friends Forever",
+        subName: "Group where we lie a lot",
+        imgURL:
+            "https://th.bing.com/th/id/R.8e2c571ff125b3531705198a15d3103c?rik=ZS6L%2fgS20ouPXA&pid=ImgRaw&r=0",
+      ),
+      Group(
+        name: "Friends Forever",
+        subName: "Group where we lie a lot",
+        imgURL:
+            "https://th.bing.com/th/id/R.8e2c571ff125b3531705198a15d3103c?rik=ZS6L%2fgS20ouPXA&pid=ImgRaw&r=0",
+      ),
+      Group(
+        name: "Friends Forever",
+        subName: "Group where we lie a lot",
+        imgURL:
+            "https://th.bing.com/th/id/R.8e2c571ff125b3531705198a15d3103c?rik=ZS6L%2fgS20ouPXA&pid=ImgRaw&r=0",
+      ),
+      Group(
+        name: "Friends Forever",
+        subName: "Group where we lie a lot",
+        imgURL:
+            "https://th.bing.com/th/id/R.8e2c571ff125b3531705198a15d3103c?rik=ZS6L%2fgS20ouPXA&pid=ImgRaw&r=0",
+      ),
+      Group(
+        name: "Friends Forever",
+        subName: "Group where we lie a lot",
+        imgURL:
+            "https://th.bing.com/th/id/R.8e2c571ff125b3531705198a15d3103c?rik=ZS6L%2fgS20ouPXA&pid=ImgRaw&r=0",
+      ),
+      Group(
+        name: "Friends Forever",
+        subName: "Group where we lie a lot",
+        imgURL:
+            "https://th.bing.com/th/id/R.8e2c571ff125b3531705198a15d3103c?rik=ZS6L%2fgS20ouPXA&pid=ImgRaw&r=0",
+      ),
+      Group(
+        name: "Friends Forever",
+        subName: "Group where we lie a lot",
+        imgURL:
+            "https://th.bing.com/th/id/R.8e2c571ff125b3531705198a15d3103c?rik=ZS6L%2fgS20ouPXA&pid=ImgRaw&r=0",
+      ),
+      Group(
+        name: "Friends Forever",
+        subName: "Group where we lie a lot",
+        imgURL:
+            "https://th.bing.com/th/id/R.8e2c571ff125b3531705198a15d3103c?rik=ZS6L%2fgS20ouPXA&pid=ImgRaw&r=0",
+      ),
+      Group(
+        name: "Friends Forever",
+        subName: "Group where we lie a lot",
+        imgURL:
+            "https://th.bing.com/th/id/R.8e2c571ff125b3531705198a15d3103c?rik=ZS6L%2fgS20ouPXA&pid=ImgRaw&r=0",
       ),
     ];
     return SafeArea(
@@ -368,19 +425,21 @@ class UserScreen extends StatelessWidget {
                         ),
                       ),
                       ConstrainedBox(
-                        constraints: const BoxConstraints(minHeight: 50, maxHeight: 200),
+                        constraints:
+                            const BoxConstraints(minHeight: 50, maxHeight: 200),
                         child: ListView.builder(
                           shrinkWrap: true,
-                          itemCount: 10,
+                          itemCount: groups.length,
                           physics: ScrollPhysics(),
                           itemBuilder: (context, index) => ListTile(
-                            title: Text("Friends Forever"),
-                            subtitle: Text("S,D,F,G,H,J,K,L,W,E,R,T,Y,U,I,O,P"),
+                            title: Text(groups[index].name),
+                            subtitle: Text(groups[index].subName),
                             leading: CircleAvatar(
                               radius: 18.0,
                               backgroundColor: Colors.transparent,
                               child: Image.network(
-                                  "https://th.bing.com/th/id/R.8e2c571ff125b3531705198a15d3103c?rik=ZS6L%2fgS20ouPXA&pid=ImgRaw&r=0"),
+                                groups[index].imgURL,
+                              ),
                             ),
                           ),
                         ),
