@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lab_02/ext_libs/expandable/expandable.dart';
 import '../models/group.dart';
 import '../models/media.dart';
 
@@ -424,29 +425,63 @@ class UserScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      ConstrainedBox(
-                        constraints:
-                            const BoxConstraints(minHeight: 50, maxHeight: 200),
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: groups.length,
-                          physics: ScrollPhysics(),
-                          itemBuilder: (context, index) => ListTile(
-                            title: Text(groups[index].name),
-                            subtitle: Text(groups[index].subName),
-                            leading: CircleAvatar(
-                              radius: 18.0,
-                              backgroundColor: Colors.transparent,
-                              child: Image.network(
-                                groups[index].imgURL,
+                      // ConstrainedBox(
+                      //   constraints:
+                      //       const BoxConstraints(minHeight: 50, maxHeight: 200),
+                      //   child: ListView.builder(
+                      //     shrinkWrap: true,
+                      //     itemCount: groups.length,
+                      //     physics: ScrollPhysics(),
+                      //     itemBuilder: (context, index) => ListTile(
+                      //       title: Text(groups[index].name),
+                      //       subtitle: Text(groups[index].subName),
+                      //       leading: CircleAvatar(
+                      //         radius: 18.0,
+                      //         backgroundColor: Colors.transparent,
+                      //         child: Image.network(
+                      //           groups[index].imgURL,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
+                      Container(
+                        child: Column(
+                          children: [
+                            ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: groups.length,
+                              physics: const BouncingScrollPhysics(),
+                              itemBuilder: (context, index) => ListTile(
+                                title: Text(groups[index].name),
+                                subtitle: Text(groups[index].subName),
+                                leading: CircleAvatar(
+                                  radius: 18.0,
+                                  backgroundColor: Colors.transparent,
+                                  child: Image.network(
+                                    groups[index].imgURL,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                            (groups.length>3)?ElevatedButton(onPressed: null, child: Icon(Icons.abc),):Container(),
+                          ],
                         ),
                       ),
                     ],
                   ),
                 ),
+
+                // You can use ListView builder for it, first take an Column widget then
+                // in children [Text("Create Groups with __"),Container- ( Listview.builder),
+                // ElevatedButton], now add condition that if listview have item count less
+                // then 3 then Elevated button will disappear, and if listview have itemcount
+                // more than 3 then elevated button will show, and when user press the
+                // Elevated button then listview will expand. here you have to one more
+                // thing, as you know listview needs some fixed height so we use container
+                // above the listview with fixed height. now you have to create an logic
+                // which changes the height of container as user press the Elevated button,
+
                 Divider(),
                 Container(
                   color: Colors.white,
