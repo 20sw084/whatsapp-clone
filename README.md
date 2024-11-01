@@ -1,16 +1,47 @@
-# lab_02
+# WhatsApp Clone Setup Instructions
 
-A new Flutter project.
+Follow these steps to set up the WhatsApp Clone project:
 
-## Getting Started
+## Prerequisites
+- Flutter SDK: [Install Flutter](https://flutter.dev/docs/get-started/install)
+- Dart: Included with Flutter
+- Android Studio or Visual Studio Code (VS Code)
+- Git: [Install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
-This project is a starting point for a Flutter application.
+## Steps
 
-A few resources to get you started if this is your first Flutter project:
+1. **Clone the repository**
+    ```bash
+    git clone https://github.com/20sw084/whatsapp-clone.git
+    cd whatsapp-clone
+    ```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+2. **Install dependencies**
+    ```bash
+    flutter pub get
+    ```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+3. **Run the app**
+    - For Android:
+        ```bash
+        flutter run
+        ```
+    - For iOS (requires macOS and Xcode):
+        ```bash
+        flutter run
+        ```
+
+4. **Build the app**
+    - For Android:
+        ```bash
+        flutter build apk
+        ```
+    - For iOS (requires macOS and Xcode):
+        ```bash
+        flutter build ios
+        ```
+
+## Additional Resources
+- [Flutter Documentation](https://flutter.dev/docs)
+- [Dart Documentation](https://dart.dev/guides)
+- [Git Documentation](https://git-scm.com/doc)
